@@ -133,6 +133,9 @@ CATS.forEach(c=>{
   };
   cc.appendChild(b);
 });
+// default selection: Meals
+cat="Meals";
+[...cc.children].forEach(x=>x.classList.toggle("sel",x.textContent==="Meals"));
 
 function showToast(msg){
   toast.textContent=msg;toast.classList.add("show");
@@ -151,9 +154,9 @@ submit.onclick=()=>{
   add(F.note,note.value.trim());
   document.body.appendChild(f);f.submit();document.body.removeChild(f);
   showToast("Logged  "+amt+" ₫ · "+cat);
-  // reset for next entry
-  raw="";cat=null;note.value="";
-  [...cc.children].forEach(x=>x.classList.remove("sel"));
+  // reset for next entry (default back to Meals)
+  raw="";cat="Meals";note.value="";
+  [...cc.children].forEach(x=>x.classList.toggle("sel",x.textContent==="Meals"));
   fmt();refresh();
   if(navigator.vibrate) navigator.vibrate(15);
 };
